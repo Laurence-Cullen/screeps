@@ -1,6 +1,6 @@
-creepBodies = require('creep_bodies')
-leastUsedSource = require('least_used_source')
-colonyConfig = require('colony_config')
+creepBodies = require('creep_bodies');
+leastUsedSource = require('least_used_source');
+colonyConfig = require('colony_config');
 
 var spawnManager = {
     run: function() {
@@ -14,7 +14,7 @@ var spawnManager = {
         var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
         console.log('Harvesters: ' + harvesters.length);
 
-        if(harvesters.length < 2) {
+        if(harvesters.length < colonyConfig.MAX_HARVESTERS) {
             var newName = 'Harvester' + Game.time;
             console.log('Spawning new harvester: ' + newName);
 

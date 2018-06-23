@@ -25,3 +25,5 @@ var leastUsedSource = {
         return source_with_fewest_creeps, fewest_creeps
     }
 }
+
+module.exports = leastUsedSource;

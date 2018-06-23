@@ -1,5 +1,9 @@
-var spawnManager = {
+creepBodies = require('creep_bodies')
+leastUsedSource = require('least_used_source')
 
+const MAX_CREEPS = 20
+
+var spawnManager = {
     run: function() {
         for(var name in Memory.creeps) {
             if(!Game.creeps[name]) {
@@ -14,8 +18,12 @@ var spawnManager = {
         if(harvesters.length < 2) {
             var newName = 'Harvester' + Game.time;
             console.log('Spawning new harvester: ' + newName);
-            Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
-                {memory: {role: 'harvester'}});
+
+            Game.spawns['Spawn1'].spawnCreep(creepBodies.light, newName, {
+              memory: {
+                role: 'harvester',
+                target_source: leastUsedSource.find()
+              }});
         }
 
         if(Game.spawns['Spawn1'].spawning) {

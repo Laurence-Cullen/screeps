@@ -4,13 +4,16 @@ var roleHarvester = {
     run: function(creep) {
         if(creep.carry.energy < creep.carryCapacity) {
             var sources = creep.room.find(FIND_SOURCES);
-            console.log(creep.name, 'moving to harvest source:', sources[0])
+            var source = sources[0]
 
-            harvest_response = creep.harvest(sources[0])
+            console.log(creep.name, 'moving to harvest source:', source)
+
+            harvest_response = creep.harvest(source)
             console.log(harvest_response)
 
             if(harvest_response == ERR_NOT_IN_RANGE) {
-                console.log(creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}}));
+
+                console.log(creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}}));
             }
         }
         else {

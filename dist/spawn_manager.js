@@ -1,7 +1,6 @@
 creepBodies = require('creep_bodies')
 leastUsedSource = require('least_used_source')
-
-const MAX_CREEPS = 20
+colonyConfig = require('colony_config')
 
 var spawnManager = {
     run: function() {
@@ -19,10 +18,12 @@ var spawnManager = {
             var newName = 'Harvester' + Game.time;
             console.log('Spawning new harvester: ' + newName);
 
+            least_used_source = leastUsedSource.find(Game.spawns['Spawn1'].room)
+
             Game.spawns['Spawn1'].spawnCreep(creepBodies.light, newName, {
               memory: {
                 role: 'harvester',
-                target_source: leastUsedSource.find()
+                target_source: least_used_source
               }});
         }
 

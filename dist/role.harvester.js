@@ -4,7 +4,7 @@ var roleHarvester = {
     run: function(creep) {
         if(creep.carry.energy < creep.carryCapacity) {
             var sources = creep.room.find(FIND_SOURCES);
-            var source = sources[0]
+            var source = creep.memory.source_target
 
             console.log(creep.name, 'moving to harvest source:', source)
 
@@ -33,7 +33,7 @@ var roleHarvester = {
                 }
             }
         }
-	}
+    }
 };
 
 module.exports = roleHarvester;

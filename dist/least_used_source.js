@@ -36,9 +36,7 @@ var leastUsedSource = {
                 fewest_creeps = creeps_per_source[source];
             }
         }
-
-
-        return source_with_fewest_creeps
+        return source_with_fewest_creeps;
     }
 };
 

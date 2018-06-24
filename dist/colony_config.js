@@ -11,12 +11,12 @@ const colonyConfig = {
             'memory_generator': roleHarvester.memory_generator
         },
         upgrader: {
-            'MAX': 1,
+            'MAX': 2,
             'run_func': roleUpgrader.run,
             'memory_generator': roleUpgrader.memory_generator
         },
         builder: {
-            'MAX': 4,
+            'MAX': 3,
             'run_func': roleBuilder.run,
             'memory_generator': roleBuilder.memory_generator
         }

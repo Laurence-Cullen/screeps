@@ -22,13 +22,21 @@ const spawner = {
             let least_used_source = leastUsedSource.find(spawn.room);
             memory_generator = colonyConfig.roles[role].memory_generator;
 
+            let body;
+            if (spawn.room.energyAvailable >= creepBodies.body_cost(creepBodies.extra_large)) {
+                body = creepBodies.extra_large;
+            } else if (spawn.room.energyAvailable >= creepBodies.body_cost(creepBodies.large)) {
+                body = creepBodies.large;
+            } else {
+                body = creepBodies.medium;
+            }
             // spawning creep
             let spawn_response = spawn.spawnCreep(
-                creepBodies.medium,
+                body,
                 newName,
                 {memory: memory_generator(role, least_used_source)}
             );
-            console.log('spawn response:', spawn_response);
+            // console.log('spawn response:', spawn_response);
         }
     }
 };

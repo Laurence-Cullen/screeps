@@ -5,8 +5,14 @@ const roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
-        if (creep.carry.energy === 0) {
-            genericBehaviours.harvest(creep);
+        if (creep.memory.harvesting && creep.carry.energy === creep.carryCapacity) {
+            creep.memory.harvesting = false;
+        } else if (!creep.memory.harvesting && creep.carry.energy === 0) {
+            creep.memory.harvesting = true;
+        }
+
+        if (creep.memory.harvesting) {
+            genericBehaviours.harvest(creep)
         } else {
             console.log(creep.name, 'looking for structures to charge');
 
@@ -35,7 +41,8 @@ const roleHarvester = {
     memory_generator: function (role, least_used_source) {
         return {
             role: role,
-            target_source: least_used_source
+            target_source: least_used_source,
+            harvesting: false
         }
     }
 };

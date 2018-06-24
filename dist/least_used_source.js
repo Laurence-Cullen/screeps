@@ -6,17 +6,17 @@ const leastUsedSource = {
     /** @param {Room} room **/
     find: function (room) {
         let source_id;
-        var sources = room.find(FIND_SOURCES);
+        const sources = room.find(FIND_SOURCES);
 
         // building dict of {source: creeps_per_source}
         let creeps_per_source = {};
         for (source_id in sources) {
-            console.log(sources[source_id]);
             creeps_per_source[sources[source_id]] = 0;
         }
 
         // populating number of creeps assigned to each source values from
         // creep memory
+        let creep;
         for (let creep_name in Game.creeps) {
             creep = Game.creeps[creep_name];
 

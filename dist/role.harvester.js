@@ -5,7 +5,7 @@ const roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
-        if (creep.carry.energy < creep.carryCapacity) {
+        if (creep.carry.energy === 0) {
             genericBehaviours.harvest(creep);
         } else {
             console.log(creep.name, 'looking for structures to charge');
@@ -26,7 +26,7 @@ const roleHarvester = {
                         }
                     });
                 }
-                // if energy is full and nothing needs charging rally at harvester flag
+            // if energy is full and nothing needs charging rally at harvester flag
             } else {
                 genericBehaviours.rally_at_flag(creep, 'harvester_rally');
             }

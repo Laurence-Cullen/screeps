@@ -12,14 +12,29 @@ const spawnManager = {
             spawn = Game.spawns[spawn_name];
 
             if (!spawn.spawning) {
-                for (const role in colonyConfig.roles) {
 
-                    spawner.spawn_creep(
-                        role,
-                        spawn,
-                        colonyConfig.roles[role].memory_generator
-                    );
+                const number_of_harvester = _.filter(Game.creeps, (creep) => creep.memory.role === 'harvester').length;
+                const number_of_upgraders = _.filter(Game.creeps, (creep) => creep.memory.role === 'upgrader').length;
+
+                // TODO remove harvester priority hack
+                if (number_of_harvester < colonyConfig.roles['harvester'].MAX) {
+                    spawner.spawn_creep('harvester', spawn, colonyConfig.roles['harvester'].memory_generator);
+
+                } else if (number_of_upgraders < colonyConfig.roles['upgrader'].MAX){
+                    spawner.spawn_creep('upgrader', spawn, colonyConfig.roles['upgrader'].memory_generator);
+
+                } else {
+                    for (const role in colonyConfig.roles) {
+
+                        spawner.spawn_creep(
+                            role,
+                            spawn,
+                            colonyConfig.roles[role].memory_generator
+                        );
+                    }
                 }
+
+
             } else {
                 // display pop up describing what the spawn is up to
                 spawn_viz(spawn);

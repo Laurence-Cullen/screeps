@@ -22,10 +22,6 @@ const spawner = {
             let least_used_source = leastUsedSource.find(spawn.room);
             memory_generator = colonyConfig.roles[role].memory_generator;
 
-            console.log('medium body:', creepBodies.medium.toString());
-            console.log([WORK, WORK, CARRY, CARRY, MOVE]);
-            console.log('body cost =', creepBodies.body_cost(creepBodies.medium));
-
             // spawning creep
             let spawn_response = spawn.spawnCreep(
                 creepBodies.medium,

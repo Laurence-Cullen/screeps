@@ -9,7 +9,7 @@ const creepBodies = {
     }),
     medium: bodyUtils.construct_body({
         'work': 2,
-        'carry': 2,
+        'carry': 1,
         'move': 1
     }),
     body_cost: function (body) {

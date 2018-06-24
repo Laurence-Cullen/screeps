@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "fs": "0.0.1-security",
-    "grunt-screeps": "^1.4.0"
+    "grunt-screeps": "^1.4.0",
+    "jest": "^23.1.0"
   }
 }

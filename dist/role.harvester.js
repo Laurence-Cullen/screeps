@@ -2,7 +2,6 @@ genericBehaviours = require('generic_behaviours');
 
 
 const roleHarvester = {
-
     /** @param {Creep} creep **/
     run: function (creep) {
         // update harvesting state
@@ -16,6 +15,14 @@ const roleHarvester = {
         if (creep.memory.harvesting) {
             genericBehaviours.harvest(creep);
         } else {
+            // console.log('attempting to charge spawn and extensions');
+            // if (genericBehaviours.charge_structure(creep, [STRUCTURE_SPAWN, STRUCTURE_EXTENSION]) === ERR_NOT_FOUND) {
+            //     console.log('attempting to charge container');
+            //     if (genericBehaviours.charge_structure(creep, [STRUCTURE_CONTAINER]) === ERR_NOT_FOUND) {
+            //         console.log('rallying');
+            //         genericBehaviours.rally_at_flag(creep, 'harvester_rally');
+            //     }
+            // }
             if (genericBehaviours.charge_spawn_and_extensions(creep) === ERR_NOT_FOUND) {
                 if (genericBehaviours.charge_containers(creep) === ERR_NOT_FOUND) {
                     genericBehaviours.rally_at_flag(creep, 'harvester_rally');

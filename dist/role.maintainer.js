@@ -1,0 +1,49 @@
+genericBehaviours = require('generic_behaviours');
+
+
+const roleMaintainer = {
+
+    /** @param {Creep} creep **/
+    run: function (creep) {
+
+        if (creep.memory.maintaining && creep.carry.energy === 0) {
+            creep.memory.maintaining = false;
+            creep.say('🔄 harvest');
+        }
+
+        if (!creep.memory.maintaining && creep.carry.energy === creep.carryCapacity) {
+            creep.memory.maintaining = true;
+            creep.say('🚧 repair');
+        }
+
+        if (creep.memory.maintaining) {
+
+            const targets = creep.room.find(FIND_STRUCTURES, {
+                filter: object => {
+                    return (object.structureType === STRUCTURE_CONTAINER ||
+                        object.structureType === STRUCTURE_ROAD) &&
+                        object.hits < object.hitsMax;
+                }
+            });
+
+            targets.sort((a, b) => 1 - (a.hits / b.hitsMax));
+
+            if (targets.length > 0) {
+                if (creep.repair(targets[0]) === ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets[0]);
+                }
+            }
+        } else {
+            genericBehaviours.harvest(creep);
+        }
+    },
+    memory_generator: function (role, least_used_source) {
+        return {
+            role: role,
+            target_source: least_used_source,
+            maintaining: false
+        }
+    }
+};
+
+module.exports = roleMaintainer;

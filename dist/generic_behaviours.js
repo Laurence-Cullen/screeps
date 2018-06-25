@@ -65,6 +65,43 @@ genericBehaviours = {
         }
         return ERR_NOT_FOUND;
     },
+    charge_structure: function (creep, structure_types) {
+        console.log('attempting to charge structure');
+        let structures;
+        if (structure_types.hasOwnProperty('storeCapacity')) {
+
+            structures = creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return structure_types.includes(structure.structureType) &&
+                        structure.store[RESOURCE_ENERGY] < structure.storeCapacity
+                }
+            });
+        } else if (structure_types.hasOwnProperty('energyCapacity')) {
+            structures = creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure_types.includes(structure.structureType)) &&
+                        structure.energy < structure.energyCapacity;
+                }
+            });
+        } else {
+            throw 'can\'t determine capacity of structure'
+        }
+
+        if (structures.length > 0) {
+            if (creep.transfer(structures[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(structures[0], {
+                    visualizePathStyle: {
+                        stroke: '#ffffff'
+                    }
+                });
+            }
+            return OK
+            // if energy is full and nothing needs charging return ERR_NOT_FOUND
+        }
+        console.log('no structure found');
+        return ERR_NOT_FOUND;
+    },
+
     rally_at_flag: function (creep, flag_name) {
         const flags = creep.room.find(FIND_FLAGS);
         for (let flag_index in flags) {

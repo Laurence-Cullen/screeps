@@ -5,36 +5,21 @@ const roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
+        // update harvesting state
         if (creep.memory.harvesting && creep.carry.energy === creep.carryCapacity) {
             creep.memory.harvesting = false;
         } else if (!creep.memory.harvesting && creep.carry.energy === 0) {
             creep.memory.harvesting = true;
         }
 
+        // either harvest, charge stuff or wait at rally point
         if (creep.memory.harvesting) {
-            genericBehaviours.harvest(creep)
+            genericBehaviours.harvest(creep);
         } else {
-            console.log(creep.name, 'looking for structures to charge');
-
-            const targets = creep.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType === STRUCTURE_EXTENSION ||
-                        structure.structureType === STRUCTURE_SPAWN ||
-                        structure.structureType === STRUCTURE_TOWER) &&
-                        structure.energy < structure.energyCapacity;
+            if (genericBehaviours.charge_spawn_and_extensions(creep) === ERR_NOT_FOUND) {
+                if (genericBehaviours.charge_containers(creep) === ERR_NOT_FOUND) {
+                    genericBehaviours.rally_at_flag(creep, 'harvester_rally');
                 }
-            });
-            if (targets.length > 0) {
-                if (creep.transfer(targets[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], {
-                        visualizePathStyle: {
-                            stroke: '#ffffff'
-                        }
-                    });
-                }
-            // if energy is full and nothing needs charging rally at harvester flag
-            } else {
-                genericBehaviours.rally_at_flag(creep, 'harvester_rally');
             }
         }
     },

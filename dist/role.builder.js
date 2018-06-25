@@ -17,7 +17,7 @@ const roleBuilder = {
         }
 
         if (creep.memory.building) {
-            // TODO make construction site targetting smarter
+            // TODO make construction site targeting smarter
             const targets = creep.room.find(FIND_CONSTRUCTION_SITES);
             if (targets.length > 0) {
                 if (creep.build(targets[0]) === ERR_NOT_IN_RANGE) {
@@ -26,6 +26,18 @@ const roleBuilder = {
                             stroke: '#ffffff'
                         }
                     });
+                }
+            } else {
+                const targets = creep.room.find(FIND_STRUCTURES, {
+                    filter: object => object.hits < object.hitsMax
+                });
+
+                targets.sort((a, b) => a.hits - b.hits);
+
+                if (targets.length > 0) {
+                    if (creep.repair(targets[0]) === ERR_NOT_IN_RANGE) {
+                        creep.moveTo(targets[0]);
+                    }
                 }
             }
         } else {

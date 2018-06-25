@@ -17,6 +17,54 @@ genericBehaviours = {
             }
         }
     },
+    charge_spawn_and_extensions: function (creep) {
+        console.log(creep.name, 'looking for structures to charge');
+
+        const targets = creep.room.find(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (structure.structureType === STRUCTURE_EXTENSION ||
+                    structure.structureType === STRUCTURE_SPAWN ||
+                    structure.structureType === STRUCTURE_TOWER) &&
+                    structure.energy < structure.energyCapacity;
+            }
+        });
+
+        if (targets.length > 0) {
+            if (creep.transfer(targets[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(targets[0], {
+                    visualizePathStyle: {
+                        stroke: '#ffffff'
+                    }
+                });
+            }
+            return OK
+            // if energy is full and nothing needs charging return ERR_NOT_FOUND
+        }
+        return ERR_NOT_FOUND;
+    },
+    charge_containers: function (creep) {
+        console.log('creep', creep.name, 'attempting to charge containers');
+
+        const containers = creep.room.find(FIND_STRUCTURES, {
+            filter: (i) => i.structureType === STRUCTURE_CONTAINER &&
+                i.store[RESOURCE_ENERGY] < i.storeCapacity
+        });
+
+        console.log('found', containers.length, 'unfilled containers');
+
+        if (containers.length > 0) {
+            if (creep.transfer(containers[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(containers[0], {
+                    visualizePathStyle: {
+                        stroke: '#ffffff'
+                    }
+                });
+            }
+            return OK
+            // if energy is full and nothing needs charging return ERR_NOT_FOUND
+        }
+        return ERR_NOT_FOUND;
+    },
     rally_at_flag: function (creep, flag_name) {
         const flags = creep.room.find(FIND_FLAGS);
         for (let flag_index in flags) {

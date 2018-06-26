@@ -18,9 +18,17 @@ const creepBodies = {
         'move': 2
     }),
     extra_large: bodyUtils.construct_body({
-        'work': 3,
-        'carry': 2,
-        'move': 3
+        'work': 4,
+        'carry': 4,
+        'move': 4
+    }),
+    fast_melee: bodyUtils.construct_body({
+        'attack': 6,
+        'move': 6
+    }),
+    fast_ranged: bodyUtils.construct_body({
+        'ranged_attack': 4,
+        'move': 4
     }),
     body_cost: function (body) {
         let total_cost = 0;

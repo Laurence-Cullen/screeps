@@ -23,7 +23,7 @@ const roleHarvester = {
             //         genericBehaviours.rally_at_flag(creep, 'harvester_rally');
             //     }
             // }
-            if (genericBehaviours.charge_spawn_and_extensions(creep) === ERR_NOT_FOUND) {
+            if (genericBehaviours.charge_spawn_and_extensions_and_turrets(creep) === ERR_NOT_FOUND) {
                 if (genericBehaviours.charge_containers(creep) === ERR_NOT_FOUND) {
                     genericBehaviours.rally_at_flag(creep, 'harvester_rally');
                 }

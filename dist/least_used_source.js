@@ -1,4 +1,4 @@
-colonyConfig = require('colony_config');
+economicConfig = require('economic_config');
 
 // must be a neater way to do this!
 const leastUsedSource = {
@@ -26,7 +26,7 @@ const leastUsedSource = {
         }
 
         let source_with_fewest_creeps = null;
-        let fewest_creeps = colonyConfig.MAX_CREEPS;
+        let fewest_creeps = economicConfig.MAX_CREEPS;
 
         let source;
         for (source_id in sources) {

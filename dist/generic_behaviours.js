@@ -17,13 +17,14 @@ genericBehaviours = {
             }
         }
     },
-    charge_spawn_and_extensions: function (creep) {
+    charge_spawn_and_extensions_and_turrets: function (creep) {
         console.log(creep.name, 'looking for structures to charge');
 
         const targets = creep.room.find(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (structure.structureType === STRUCTURE_EXTENSION ||
                     structure.structureType === STRUCTURE_SPAWN ||
+                    structure.structureType === STRUCTURE_TOWER ||
                     structure.structureType === STRUCTURE_TOWER) &&
                     structure.energy < structure.energyCapacity;
             }

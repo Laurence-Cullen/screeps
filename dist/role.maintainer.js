@@ -21,7 +21,9 @@ const roleMaintainer = {
             const targets = creep.room.find(FIND_STRUCTURES, {
                 filter: object => {
                     return (object.structureType === STRUCTURE_CONTAINER ||
-                        object.structureType === STRUCTURE_ROAD) &&
+                        object.structureType === STRUCTURE_ROAD ||
+                        object.structureType === STRUCTURE_RAMPART ||
+                        object.structureType === STRUCTURE_TOWER) &&
                         object.hits < object.hitsMax;
                 }
             });

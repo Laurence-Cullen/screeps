@@ -1,0 +1,5 @@
+combatManager = {
+
+};
+
+module.exports = combatManager;

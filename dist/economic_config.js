@@ -4,7 +4,7 @@ roleBuilder = require('role.builder');
 roleMaintainer = require('role.maintainer');
 
 
-const colonyConfig = {
+const economicConfig = {
     roles: {
         harvester: {
             'MAX': 3,
@@ -27,7 +27,7 @@ const colonyConfig = {
             'memory_generator': roleMaintainer.memory_generator
         }
     },
-    MAX_CREEPS: 20
+    MAX_CREEPS: 400
 };
 
-module.exports = colonyConfig;
+module.exports = economicConfig;

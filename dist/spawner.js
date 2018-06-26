@@ -1,4 +1,4 @@
-colonyConfig = require('colony_config');
+economicConfig = require('economic_config');
 leastUsedSource = require('least_used_source');
 creepBodies = require('creep_bodies');
 
@@ -12,7 +12,7 @@ const spawner = {
         let creeps_in_role = _.filter(Game.creeps, (creep) => creep.memory.role === role);
         console.log(creeps_in_role.length, 'creeps in', role, 'role');
 
-        if (creeps_in_role.length < colonyConfig.roles[role].MAX) {
+        if (creeps_in_role.length < economicConfig.roles[role].MAX) {
             let newName = role + Game.time;
             console.log(
                 'Spawning creep in role:', role, 'with name: ', newName
@@ -20,7 +20,7 @@ const spawner = {
 
             // finding the source with the minimum number of assigned creeps
             let least_used_source = leastUsedSource.find(spawn.room);
-            memory_generator = colonyConfig.roles[role].memory_generator;
+            memory_generator = economicConfig.roles[role].memory_generator;
 
             let body;
             if (spawn.room.energyAvailable >= creepBodies.body_cost(creepBodies.extra_large)) {

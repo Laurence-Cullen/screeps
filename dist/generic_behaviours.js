@@ -17,6 +17,26 @@ genericBehaviours = {
             }
         }
     },
+    withdraw_energy_from_containers: function (creep) {
+        // find the closest container with energy in it and fill up carry capacity of creep
+
+        const containers = creep.room.find(FIND_MY_STRUCTURES, {
+            filter: {structureType: STRUCTURE_CONTAINER}
+        });
+
+        const containers_with_energy = _.filter(containers, (container) => container.store[RESOURCE_ENERGY] > 0);
+
+        // sort containers by shortest path to creep
+        _.sortBy(containers_with_energy, container => creep.pos.getRangeTo(container));
+
+        if (creep.withdraw(containers_with_energy[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(containers_with_energy[0], {
+                visualizePathStyle: {
+                    stroke: '#000eff'
+                }
+            });
+        }
+    },
     charge_spawn_and_extensions_and_turrets: function (creep) {
         console.log(creep.name, 'looking for structures to charge');
 

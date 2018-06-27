@@ -1,4 +1,4 @@
-const memoryCleaner = {
+module.exports = {
     clean: function () {
         for (const name in Memory.creeps) {
             if (!Game.creeps[name]) {
@@ -8,5 +8,3 @@ const memoryCleaner = {
         }
     }
 };
-
-module.exports = memoryCleaner;

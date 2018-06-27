@@ -1,7 +1,8 @@
 genericBehaviours = require('generic_behaviours');
+leastUsedSource = require('least_used_source');
 
 
-const roleUpgrader = {
+module.exports = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
@@ -26,13 +27,11 @@ const roleUpgrader = {
             genericBehaviours.harvest(creep);
         }
     },
-    memory_generator: function (role, least_used_source) {
+    memory_generator: function (role, spawn) {
         return {
             role: role,
-            target_source: least_used_source,
+            target_source: leastUsedSource.find(spawn.room),
             upgrading: false
         };
     }
 };
-
-module.exports = roleUpgrader;

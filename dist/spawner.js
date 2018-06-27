@@ -6,9 +6,8 @@ creepBodies = require('creep_bodies');
 // automatically assigns the creep to the least used source available in the
 // room
 const spawner = {
-    spawn_creep: function (role, spawn, memory_generator) {
+    spawn_creep: function (role, spawn, config) {
 
-        // TODO figure out how this line works
         let creeps_in_role = _.filter(Game.creeps, (creep) => creep.memory.role === role);
         console.log(creeps_in_role.length, 'creeps in', role, 'role');
 
@@ -19,24 +18,25 @@ const spawner = {
             );
 
             // finding the source with the minimum number of assigned creeps
-            let least_used_source = leastUsedSource.find(spawn.room);
-            memory_generator = economicConfig.roles[role].memory_generator;
+            // let least_used_source = leastUsedSource.find(spawn.room);
+            const memory_generator = economicConfig.roles[role].memory_generator;
 
-            let body;
-            if (spawn.room.energyAvailable >= creepBodies.body_cost(creepBodies.extra_large)) {
-                body = creepBodies.extra_large;
-            } else if (spawn.room.energyAvailable >= creepBodies.body_cost(creepBodies.large)) {
-                body = creepBodies.large;
-            } else {
-                body = creepBodies.medium;
-            }
+            const body = economicConfig[role].body_selector(spawn.room.energyAvailable);
+
+            // if (spawn.room.energyAvailable >= creepBodies.body_cost(creepBodies.extra_large)) {
+            //     body = creepBodies.extra_large;
+            // } else if (spawn.room.energyAvailable >= creepBodies.body_cost(creepBodies.large)) {
+            //     body = creepBodies.large;
+            // } else {
+            //     body = creepBodies.medium;
+            // }
             // spawning creep
             let spawn_response = spawn.spawnCreep(
                 body,
                 newName,
-                {memory: memory_generator(role, least_used_source)}
+                {memory: memory_generator(role, spawn)}
             );
-            // console.log('spawn response:', spawn_response);
+            console.log('spawn response:', spawn_response);
         }
     }
 };

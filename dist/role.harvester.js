@@ -1,4 +1,5 @@
 genericBehaviours = require('generic_behaviours');
+leastUsedSource = require('least_used_source');
 
 
 const roleHarvester = {
@@ -30,10 +31,10 @@ const roleHarvester = {
             }
         }
     },
-    memory_generator: function (role, least_used_source) {
+    memory_generator: function (role, spawn) {
         return {
             role: role,
-            target_source: least_used_source,
+            target_source: leastUsedSource.find(spawn.room),
             harvesting: false
         }
     }

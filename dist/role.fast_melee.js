@@ -1,5 +1,5 @@
-genericRoles = require('generic_roles');
+soldier = require('generic_roles');
 
-const roleFastMelee = genericRoles.soldier;
+const roleFastMelee = soldier;
 
 module.exports = roleFastMelee;

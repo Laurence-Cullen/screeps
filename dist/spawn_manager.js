@@ -27,7 +27,7 @@ const spawnManager = {
                         spawner.spawn_creep(
                             role,
                             spawn,
-                            economicConfig.roles[role].memory_generator
+                            economicConfig
                         );
                     }
                 }
@@ -63,8 +63,8 @@ function spawn_viz(spawn) {
     const spawningCreep = Game.creeps[spawn.spawning.name];
     spawn.room.visual.text(
         '🛠️' + spawningCreep.memory.role,
-        spawn.pos.x + 1,
-        spawn.pos.y, {
+        spawn.pos.x - 3,
+        spawn.pos.y + 1, {
             align: 'left',
             opacity: 0.8
         });

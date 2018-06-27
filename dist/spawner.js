@@ -5,7 +5,7 @@ creepBodies = require('creep_bodies');
 // generic spawning function to create a creep of a given role at given spawn,
 // automatically assigns the creep to the least used source available in the
 // room
-const spawner = {
+module.exports = {
     spawn_creep: function (role, spawn, config) {
 
         let creeps_in_role = _.filter(Game.creeps, (creep) => creep.memory.role === role);
@@ -40,5 +40,3 @@ const spawner = {
         }
     }
 };
-
-module.exports = spawner;

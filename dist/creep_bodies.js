@@ -1,8 +1,8 @@
-const {part_costs} = require('body_utils');
-const {bodyUtils} = require('body_utils');
+part_costs = require('body_utils');
+bodyUtils = require('body_utils');
 
 
-const creepBodies = {
+module.exports = {
     // light: bodyUtils.construct_body({
     //     'work': 1,
     //     'carry': 1,
@@ -47,6 +47,3 @@ const creepBodies = {
         return bodyUtils.construct_body({'move': body_parts, 'ranged_attack': body_parts});
     }
 };
-
-
-module.exports = creepBodies;

@@ -1,4 +1,4 @@
-soldier = {
+module.export = {
     // TODO adjust attack priorities
     run: function (creep) {
         if (creep.memory.rally) {
@@ -36,5 +36,3 @@ soldier = {
         }
     }
 };
-
-module.export = soldier;

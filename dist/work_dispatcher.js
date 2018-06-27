@@ -1,7 +1,7 @@
 economicConfig = require('economic_config');
 
 
-const workDispatcher = {
+module.exports = {
     run: function () {
         for (const creep_name in Game.creeps) {
             const creep = Game.creeps[creep_name];
@@ -11,5 +11,3 @@ const workDispatcher = {
         }
     }
 };
-
-module.exports = workDispatcher;

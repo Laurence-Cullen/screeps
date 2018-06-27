@@ -1,5 +1,5 @@
 // TODO simplify logic, must be a neater way to do this!
-const leastUsedSource = {
+module.exports = {
 
     /** @param {Room} room **/
     find: function (room) {
@@ -41,5 +41,3 @@ const leastUsedSource = {
         return source_with_fewest_creeps;
     }
 };
-
-module.exports = leastUsedSource;

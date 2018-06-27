@@ -3,7 +3,7 @@ economicConfig = require('economic_config');
 memoryCleaner = require('memory_cleaner');
 spawner = require('spawner');
 
-const spawnManager = {
+module.exports = {
     economic: function () {
         let spawn;
         for (let spawn_name in Game.spawns) {
@@ -69,5 +69,3 @@ function spawn_viz(spawn) {
             opacity: 0.8
         });
 }
-
-module.exports = spawnManager;

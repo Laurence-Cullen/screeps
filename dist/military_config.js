@@ -1,10 +1,8 @@
-roleFastMelee = require('role.fast_melee');
-roleFastRanged = require('role.fast_ranged');
 creepBodies = require('creep_bodies');
 soldier = require('generic_roles');
 
 
-militaryConfig = {
+module.exports = {
     roles: {
         fast_melee: {
             'MAX': 0,
@@ -23,6 +21,3 @@ militaryConfig = {
     attack_on_sight: false,
     MAX: 30
 };
-
-
-module.exports = militaryConfig;

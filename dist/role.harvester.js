@@ -2,7 +2,7 @@ genericBehaviours = require('generic_behaviours');
 leastUsedSource = require('least_used_source');
 
 
-const roleHarvester = {
+module.exports = {
     /** @param {Creep} creep **/
     run: function (creep) {
         // update harvesting state
@@ -39,5 +39,3 @@ const roleHarvester = {
         }
     }
 };
-
-module.exports = roleHarvester;

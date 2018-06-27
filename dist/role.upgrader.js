@@ -2,7 +2,7 @@ genericBehaviours = require('generic_behaviours');
 leastUsedSource = require('least_used_source');
 
 
-const roleUpgrader = {
+module.exports = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
@@ -35,5 +35,3 @@ const roleUpgrader = {
         };
     }
 };
-
-module.exports = roleUpgrader;

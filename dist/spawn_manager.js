@@ -1,9 +1,9 @@
 economicConfig = require('economic_config');
-// militaryConfig = require('military_config');
+militaryConfig = require('military_config');
 memoryCleaner = require('memory_cleaner');
 spawner = require('spawner');
 
-const spawnManager = {
+module.exports = {
     economic: function () {
         let spawn;
         for (let spawn_name in Game.spawns) {
@@ -27,7 +27,7 @@ const spawnManager = {
                         spawner.spawn_creep(
                             role,
                             spawn,
-                            economicConfig.roles[role].memory_generator
+                            economicConfig
                         );
                     }
                 }
@@ -40,34 +40,32 @@ const spawnManager = {
         }
 
     },
-    // military: function () {
-    //     let spawn;
-    //     for (let spawn_name in Game.spawns) {
-    //         spawn = Game.spawns[spawn_name];
-    //
-    //         if (!spawn.spawning) {
-    //             for (const role in militaryConfig.roles) {
-    //
-    //                 spawner.spawn_creep(
-    //                     role,
-    //                     spawn,
-    //                     militaryConfig.roles[role].memory_generator
-    //                 );
-    //             }
-    //         }
-    //     }
-    // }
+    military: function () {
+        let spawn;
+        for (let spawn_name in Game.spawns) {
+            spawn = Game.spawns[spawn_name];
+
+            if (!spawn.spawning) {
+                for (const role in militaryConfig.roles) {
+
+                    spawner.spawn_creep(
+                        role,
+                        spawn,
+                        militaryConfig
+                    );
+                }
+            }
+        }
+    }
 };
 
 function spawn_viz(spawn) {
     const spawningCreep = Game.creeps[spawn.spawning.name];
     spawn.room.visual.text(
         '🛠️' + spawningCreep.memory.role,
-        spawn.pos.x + 1,
-        spawn.pos.y, {
+        spawn.pos.x - 3,
+        spawn.pos.y + 1, {
             align: 'left',
             opacity: 0.8
         });
 }
-
-module.exports = spawnManager;

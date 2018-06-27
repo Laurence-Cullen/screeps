@@ -9,7 +9,7 @@ module.exports.loop = function () {
     memoryCleaner.clean();
 
     // spawn more creeps if necessary
-    // spawnManager.military();
+    spawnManager.military();
     spawnManager.economic();
 
     // issue creep run commands

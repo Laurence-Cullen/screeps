@@ -1,7 +1,5 @@
-economicConfig = require('economic_config');
-
-// must be a neater way to do this!
-const leastUsedSource = {
+// TODO simplify logic, must be a neater way to do this!
+module.exports = {
 
     /** @param {Room} room **/
     find: function (room) {
@@ -26,7 +24,9 @@ const leastUsedSource = {
         }
 
         let source_with_fewest_creeps = null;
-        let fewest_creeps = economicConfig.MAX_CREEPS;
+
+        // TODO think about if this needs an elegant solution
+        let fewest_creeps = 10000;
 
         let source;
         for (source_id in sources) {
@@ -41,5 +41,3 @@ const leastUsedSource = {
         return source_with_fewest_creeps;
     }
 };
-
-module.exports = leastUsedSource;

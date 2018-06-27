@@ -1,4 +1,4 @@
-genericBehaviours = {
+module.exports = {
     harvest: function (creep) {
         let source = creep.memory.target_source;
         let harvest_response = creep.harvest(Game.getObjectById(source.id));
@@ -149,5 +149,3 @@ genericBehaviours = {
         });
     }
 };
-
-module.exports = genericBehaviours;

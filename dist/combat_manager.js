@@ -1,5 +1,1 @@
-combatManager = {
-
-};
-
-module.exports = combatManager;
+module.exports = {};

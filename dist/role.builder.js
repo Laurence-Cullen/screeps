@@ -1,7 +1,7 @@
 genericBehaviours = require('generic_behaviours');
 
 
-const roleBuilder = {
+module.exports = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
@@ -52,5 +52,3 @@ const roleBuilder = {
         }
     }
 };
-
-module.exports = roleBuilder;

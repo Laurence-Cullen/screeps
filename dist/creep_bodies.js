@@ -13,6 +13,11 @@ module.exports = {
         const body_parts = _.floor(energy_budget / (part_costs.move + part_costs.attack));
         return bodyUtils.construct_body({'move': body_parts, 'attack': body_parts});
     },
+    max_slow_melee: function (energy_budget) {
+        // calculate how many multiples of 1 move, 1 tough and 1 attack can fit within energy budget
+        const body_parts = _.floor(energy_budget / (part_costs.move + part_costs.attack + part_costs.tough));
+        return bodyUtils.construct_body({'move': body_parts, 'attack': body_parts, 'tough': body_parts});
+    },
     max_fast_ranged: function (energy_budget) {
         // calculate how many multiples of 1 move and 1 ranged_attack can fit within energy budget
         const body_parts = _.floor(energy_budget / (part_costs.move + part_costs.ranged_attack));

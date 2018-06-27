@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
     // TODO adjust attack priorities
     run: function (creep) {
         if (creep.memory.rally) {

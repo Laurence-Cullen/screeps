@@ -1,4 +1,4 @@
-part_costs = require('body_utils');
+part_costs = require('part_costs');
 bodyUtils = require('body_utils');
 
 
@@ -34,7 +34,7 @@ module.exports = {
     max_labourer: function (energy_budget) {
         // calculate how many multiples of 1 move, 1 work and 1 carry can fit within energy budget
         const body_parts = _.floor(energy_budget / (part_costs.move + part_costs.work + part_costs.carry));
-        return bodyUtils.construct_body({'move': body_parts, 'work': body_parts, 'carry': body_parts})
+        return bodyUtils.construct_body({'move': body_parts, 'work': body_parts, 'carry': body_parts});
     },
     max_fast_melee: function (energy_budget) {
         // calculate how many multiples of 1 move and 1 attack can fit within energy budget

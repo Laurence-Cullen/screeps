@@ -1,4 +1,3 @@
-economicConfig = require('economic_config');
 leastUsedSource = require('least_used_source');
 creepBodies = require('creep_bodies');
 
@@ -6,12 +5,12 @@ creepBodies = require('creep_bodies');
 // automatically assigns the creep to the least used source available in the
 // room
 module.exports = {
-    spawn_creep: function (role, spawn, config) {
+    spawn_creep: function (role, spawn, sector_config) {
 
         let creeps_in_role = _.filter(Game.creeps, (creep) => creep.memory.role === role);
         console.log(creeps_in_role.length, 'creeps in', role, 'role');
 
-        if (creeps_in_role.length < economicConfig.roles[role].MAX) {
+        if (creeps_in_role.length < sector_config.roles[role].MAX) {
             let newName = role + Game.time;
             console.log(
                 'Spawning creep in role:', role, 'with name: ', newName
@@ -19,20 +18,14 @@ module.exports = {
 
             // finding the source with the minimum number of assigned creeps
             // let least_used_source = leastUsedSource.find(spawn.room);
-            const memory_generator = economicConfig.roles[role].memory_generator;
+            const memory_generator = sector_config.roles[role].memory_generator;
 
-            const body = economicConfig[role].body_selector(spawn.room.energyAvailable);
+            // importing body building function
+            const body_selector = sector_config.roles[role].body_selector;
 
-            // if (spawn.room.energyAvailable >= creepBodies.body_cost(creepBodies.extra_large)) {
-            //     body = creepBodies.extra_large;
-            // } else if (spawn.room.energyAvailable >= creepBodies.body_cost(creepBodies.large)) {
-            //     body = creepBodies.large;
-            // } else {
-            //     body = creepBodies.medium;
-            // }
             // spawning creep
             let spawn_response = spawn.spawnCreep(
-                body,
+                body_selector(spawn.room.energyAvailable),
                 newName,
                 {memory: memory_generator(role, spawn)}
             );

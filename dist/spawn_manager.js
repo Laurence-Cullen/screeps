@@ -1,5 +1,5 @@
 economicConfig = require('economic_config');
-// militaryConfig = require('military_config');
+militaryConfig = require('military_config');
 memoryCleaner = require('memory_cleaner');
 spawner = require('spawner');
 
@@ -40,23 +40,23 @@ module.exports = {
         }
 
     },
-    // military: function () {
-    //     let spawn;
-    //     for (let spawn_name in Game.spawns) {
-    //         spawn = Game.spawns[spawn_name];
-    //
-    //         if (!spawn.spawning) {
-    //             for (const role in militaryConfig.roles) {
-    //
-    //                 spawner.spawn_creep(
-    //                     role,
-    //                     spawn,
-    //                     militaryConfig.roles[role].memory_generator
-    //                 );
-    //             }
-    //         }
-    //     }
-    // }
+    military: function () {
+        let spawn;
+        for (let spawn_name in Game.spawns) {
+            spawn = Game.spawns[spawn_name];
+
+            if (!spawn.spawning) {
+                for (const role in militaryConfig.roles) {
+
+                    spawner.spawn_creep(
+                        role,
+                        spawn,
+                        militaryConfig
+                    );
+                }
+            }
+        }
+    }
 };
 
 function spawn_viz(spawn) {

@@ -18,19 +18,13 @@ module.exports = {
         }
     },
     withdraw_energy_from_containers: function (creep) {
-        // find the closest container with energy in it and fill up carry capacity of creep
+        // find the closest container with energy in it and withdraw energy from it
 
-        console.log(creep.name, 'attempting to withdraw from containers');
-
-        const containers = creep.room.find(FIND_MY_STRUCTURES, {
+        const containers = creep.room.find(FIND_STRUCTURES, {
             filter: {structureType: STRUCTURE_CONTAINER}
         });
 
-        console.log('found', containers.length, 'containers');
-
         const containers_with_energy = _.filter(containers, (container) => container.store[RESOURCE_ENERGY] > 0);
-
-        console.log('found', containers.length, 'containers with energy');
 
         // sort containers by shortest path to creep
         _.sortBy(containers_with_energy, container => creep.pos.getRangeTo(container));
@@ -56,9 +50,12 @@ module.exports = {
             }
         });
 
-        if (targets.length > 0) {
-            if (creep.transfer(targets[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(targets[0], {
+        // sort targets by proximity to creep
+        const ordered_targets = _.sortBy(targets, target => creep.pos.getRangeTo(target));
+
+        if (ordered_targets.length > 0) {
+            if (creep.transfer(ordered_targets[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(ordered_targets[0], {
                     visualizePathStyle: {
                         stroke: '#ffffff'
                     }

@@ -20,7 +20,9 @@ module.exports = {
         } else if (creep.memory.harvesting && (creep.room.energyAvailable < creep.room.energyCapacityAvailable)) {
             // when extensions and spawn are not fully charged withdraw energy from containers to expedite
             // refill process
-            genericBehaviours.withdraw_energy_from_containers(creep);
+            if (genericBehaviours.withdraw_energy_from_containers(creep) === ERR_NOT_ENOUGH_ENERGY){
+                genericBehaviours.harvest(creep);
+            }
 
         } else {
             if (genericBehaviours.charge_spawn_and_extensions_and_turrets(creep) === ERR_NOT_FOUND) {

@@ -27,10 +27,14 @@ module.exports = {
         const containers_with_energy = _.filter(containers, (container) => container.store[RESOURCE_ENERGY] > 0);
 
         // sort containers by shortest path to creep
-        _.sortBy(containers_with_energy, container => creep.pos.getRangeTo(container));
+        const sorted_containers= _.sortBy(containers_with_energy, container => creep.pos.getRangeTo(container));
 
-        if (creep.withdraw(containers_with_energy[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(containers_with_energy[0], {
+        if (sorted_containers.length === 0) {
+            return ERR_NOT_ENOUGH_ENERGY;
+        }
+
+        if (creep.withdraw(sorted_containers[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(sorted_containers[0], {
                 visualizePathStyle: {
                     stroke: '#000eff'
                 }

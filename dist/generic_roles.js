@@ -17,7 +17,6 @@ module.exports = {
             });
             const sorted_enemy_towers = _.sortBy(enemy_towers, enemy_tower => creep.pos.getRangeTo(enemy_tower));
 
-
             const enemy_structures = creep.room.find(FIND_HOSTILE_STRUCTURES);
             const sorted_enemy_structures = _.sortBy(
                 enemy_structures,
@@ -44,6 +43,9 @@ module.exports = {
                 if (creep.attack(target) === ERR_NOT_IN_RANGE) {
                     creep.moveTo(target);
                 }
+            } else {
+                console.log(creep.name, 'found no enemies, moving to rally point');
+                creep.moveTo(creep.memory.rally_position);
             }
         }
 

@@ -5,7 +5,7 @@ soldier = require('generic_roles');
 module.exports = {
     roles: {
         fast_melee: {
-            'MAX': 0,
+            'MAX': 4,
             'run_func': soldier.run,
             'memory_generator': soldier.memory_generator,
             'body_selector': creepBodies.max_fast_melee

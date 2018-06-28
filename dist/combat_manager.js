@@ -18,5 +18,12 @@ module.exports = {
                 // console.log('encountered exception', e, 'in combat_manager')
             }
         }
+        const tower = Game.getObjectById('5b32224aa9caf83167ed9c60');
+
+        const enemy_creep = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if (enemy_creep){
+            tower.attack(enemy_creep);
+        }
+
     }
 };

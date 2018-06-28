@@ -18,9 +18,13 @@ module.exports = {
         for (let creep_name in Game.creeps) {
             creep = Game.creeps[creep_name];
 
-            creeps_per_source[
-                Game.getObjectById(creep.memory.target_source.id)
-                ]++;
+            try {
+                creeps_per_source[
+                    Game.getObjectById(creep.memory.target_source.id)
+                    ]++;
+            } catch (e) {
+                console.log('encountered', e, 'in least_used_source')
+            }
         }
 
         let source_with_fewest_creeps = null;

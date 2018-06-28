@@ -5,10 +5,16 @@ soldier = require('generic_roles');
 module.exports = {
     roles: {
         fast_melee: {
-            'MAX': 0,
+            'MAX': 1,
             'run_func': soldier.run,
             'memory_generator': soldier.memory_generator,
             'body_selector': creepBodies.max_fast_melee
+        },
+        slow_melee: {
+            'MAX': 0,
+            'run_func': soldier.run,
+            'memory_generator': soldier.memory_generator,
+            'body_selector': creepBodies.max_slow_melee
         },
         fast_ranged: {
             'MAX': 0,
@@ -18,6 +24,6 @@ module.exports = {
         }
     },
     rally_position: new RoomPosition(24, 24, 'W7S42'),
-    attack_on_sight: false,
+    attack_on_sight: true,
     MAX: 30
 };

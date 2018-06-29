@@ -21,6 +21,8 @@
   "homepage": "https://github.com/Laurence-Cullen/screeps#readme",
   "devDependencies": {
     "grunt": "^1.0.3",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-credentials": "^0.1.1"
   },
   "dependencies": {

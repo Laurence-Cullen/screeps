@@ -16,6 +16,13 @@ module.exports = {
             'memory_generator': soldier.memory_generator,
             'body_selector': creepBodies.max_slow_melee
         },
+        // TODO fill in tank functionality
+        heavy_tank: {
+            'MAX': 0,
+            'run_func':,
+            'memory_generator':,
+            'body_selector': creepBodies.heavy_tank
+        },
         fast_ranged: {
             'MAX': 0,
             'run_func': soldier.run,

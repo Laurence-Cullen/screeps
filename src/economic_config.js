@@ -14,7 +14,7 @@ module.exports = {
             'body_selector': creepBodies.max_labourer
         },
         upgrader: {
-            'MAX': 2,
+            'MAX': 1,
             'run_func': roleUpgrader.run,
             'memory_generator': roleUpgrader.memory_generator,
             'body_selector': creepBodies.max_labourer
@@ -26,7 +26,7 @@ module.exports = {
             'body_selector': creepBodies.max_labourer
         },
         maintainer: {
-            'MAX': 2,
+            'MAX': 3,
             'run_func': roleMaintainer.run,
             'memory_generator': roleMaintainer.memory_generator,
             'body_selector': creepBodies.max_labourer

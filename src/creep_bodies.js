@@ -22,5 +22,10 @@ module.exports = {
         // calculate how many multiples of 1 move and 1 ranged_attack can fit within energy budget
         const body_parts = _.floor(energy_budget / (part_costs.move + part_costs.ranged_attack));
         return bodyUtils.construct_body({'move': body_parts, 'ranged_attack': body_parts});
+    },
+    // hardcoded unit for level 4 extension energy limitations: cost = 1260 energy, designed to suck up 8 point blank
+    // turret hits before death
+    heavy_tank: function(energy_budget) {
+        return bodyUtils.construct_body({'attack': 4, 'move': 14, 'tough': 24})
     }
 };

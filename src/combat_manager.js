@@ -5,6 +5,8 @@ module.exports = {
         for (const creep_name in Game.creeps) {
             const creep = Game.creeps[creep_name];
 
+            // TODO add group based military command for more complex attack and defense sequences
+
             // updating creep rally position
             creep.memory.rally_position = militaryConfig.rally_position;
 

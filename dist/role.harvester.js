@@ -11,7 +11,7 @@ module.exports = {
         } else if (!creep.memory.harvesting && creep.carry.energy === 0) {
             creep.memory.harvesting = true;
         }
-        
+
         // when extensions and spawns are fully charged mine from sources
         // if (creep.memory.harvesting && (creep.room.energyAvailable === creep.room.energyCapacityAvailable)) {
         if (creep.memory.harvesting) {

@@ -10,8 +10,6 @@ module.exports = {
             // find targets
             const enemy_creep = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
 
-            console.log('found enemy creep:', enemy_creep);
-
             const enemy_towers = creep.room.find(FIND_HOSTILE_STRUCTURES, {
                 filter: {structureType: STRUCTURE_TOWER}
             });
@@ -25,12 +23,12 @@ module.exports = {
 
             // pick single target from targets
             let target;
-            if (sorted_enemy_towers.length > 0) {
-                console.log('found enemy towers');
-                target = enemy_towers[0]
-            } else if (enemy_creep) {
+            if (enemy_creep) {
                 console.log('found enemy creep');
                 target = enemy_creep;
+            } else if (sorted_enemy_towers.length > 0) {
+                console.log('found enemy towers');
+                target = enemy_towers[0]
             } else if (sorted_enemy_structures.length > 0) {
                 console.log('found enemy structures');
                 target = sorted_enemy_structures[0];

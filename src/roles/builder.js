@@ -1,5 +1,5 @@
-genericBehaviours = require('generic_behaviours');
-leastUsedSource = require('least_used_source');
+genericactions = require('src/actions/generic_actions');
+leastUsedSource = require('src/utils/least_used_source');
 
 
 module.exports = {
@@ -42,7 +42,7 @@ module.exports = {
                 }
             }
         } else {
-            genericBehaviours.harvest(creep);
+            genericactions.harvest(creep);
         }
     },
     memory_generator: function (role, spawn) {

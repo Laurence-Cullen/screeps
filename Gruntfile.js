@@ -12,8 +12,8 @@ module.exports = function (grunt) {
     const private_directory = grunt.option('private_directory') || config.private_directory;
 
 
-    const currentdate = new Date();
-    grunt.log.subhead('Task Start: ' + currentdate.toLocaleString());
+    const current_date = new Date();
+    grunt.log.subhead('Task Start: ' + current_date.toLocaleString());
     grunt.log.writeln('Branch: ' + branch);
 
     // Load needed tasks
@@ -84,7 +84,7 @@ module.exports = function (grunt) {
             versioning: {
                 files: [
                     {
-                        append: "\nglobal.SCRIPT_VERSION = " + currentdate.getTime() + "\n",
+                        append: "\nglobal.SCRIPT_VERSION = " + current_date.getTime() + "\n",
                         input: 'dist/version.js',
                     }
                 ]

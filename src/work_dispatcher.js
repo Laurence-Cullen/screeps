@@ -1,4 +1,4 @@
-economicConfig = require('economic_config');
+economicConfig = require('config/economic');
 
 
 module.exports = {

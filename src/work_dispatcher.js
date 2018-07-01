@@ -6,11 +6,9 @@ module.exports = {
         for (const creep_name in Game.creeps) {
             const creep = Game.creeps[creep_name];
 
-            try {
+            if (creep.memory.role in economicConfig.roles) {
                 // finding run_func from mapping in economicConfig
                 economicConfig.roles[creep.memory.role].run_func(creep);
-            } catch (e) {
-
             }
         }
     }

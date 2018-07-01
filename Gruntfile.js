@@ -74,7 +74,7 @@ module.exports = function (grunt) {
                 }],
                 options: {
                     replacements: [{
-                        pattern: /require\('[A-Za-z0-9_]*\/[A-Za-z0-9_]*\/[A-Za-z0-9_]*\/*/g,
+                        pattern: /require\('[A-Za-z0-9_\/]*'\)/g,
                         replacement: function (match) {
                             match = match.replace("src/", "");
                             return match.replace(/\//g, "_");

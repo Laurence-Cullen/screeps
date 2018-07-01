@@ -1,7 +1,7 @@
-economicConfig = require('economic_config');
-militaryConfig = require('military_config');
-memoryCleaner = require('memory_cleaner');
-spawner = require('spawner');
+economicConfig = require('src/config/economic');
+militaryConfig = require('src/config/military');
+memoryCleaner = require('src/utils/memory_cleaner');
+spawner = require('src/spawning/spawner');
 
 module.exports = {
     economic: function () {

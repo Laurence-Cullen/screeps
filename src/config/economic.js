@@ -1,8 +1,8 @@
-roleHarvester = require('role.harvester');
-roleUpgrader = require('role.upgrader');
-roleBuilder = require('role.builder');
-roleMaintainer = require('role.maintainer');
-creepBodies = require('creep_bodies');
+roleHarvester = require('src/roles/harvester');
+roleUpgrader = require('src/roles/upgrader');
+roleBuilder = require('src/roles/builder');
+roleMaintainer = require('src/roles/maintainer');
+creepBodies = require('src/body/creep_bodies');
 
 
 module.exports = {
@@ -20,7 +20,7 @@ module.exports = {
             'body_selector': creepBodies.max_labourer
         },
         builder: {
-            'MAX': 3,
+            'MAX': 2,
             'run_func': roleBuilder.run,
             'memory_generator': roleBuilder.memory_generator,
             'body_selector': creepBodies.max_labourer

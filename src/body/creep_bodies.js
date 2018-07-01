@@ -1,5 +1,5 @@
-part_costs = require('part_costs');
-bodyUtils = require('body_utils');
+part_costs = require('src/body/part_costs');
+bodyUtils = require('src/body/body_utils');
 
 
 module.exports = {
@@ -26,6 +26,9 @@ module.exports = {
     // hardcoded unit for level 4 extension energy limitations: cost = 1260 energy, designed to suck up 8 point blank
     // turret hits before death
     heavy_tank: function(energy_budget) {
-        return bodyUtils.construct_body({'attack': 4, 'move': 14, 'tough': 24})
-    }
+        return bodyUtils.construct_body({'attack': 2, 'move': 16, 'tough': 30})
+    },
+    big_melee: function(energy_budget) {
+        return bodyUtils.construct_body({'attack': 10, 'move': 10})
+    },
 };

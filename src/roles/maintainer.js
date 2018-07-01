@@ -1,5 +1,5 @@
-genericBehaviours = require('generic_behaviours');
-leastUsedSource = require('least_used_source');
+genericActions = require('src/actions/generic_behaviours');
+leastUsedSource = require('src/utils/least_used_source');
 
 
 module.exports = {
@@ -25,7 +25,8 @@ module.exports = {
                         object.structureType === STRUCTURE_ROAD ||
                         object.structureType === STRUCTURE_RAMPART ||
                         object.structureType === STRUCTURE_TOWER) &&
-                        object.hits < object.hitsMax;
+                        (object.hits < object.hitsMax &&
+                            object.hits < 10e6);
                 }
             });
 
@@ -38,7 +39,7 @@ module.exports = {
                 }
             }
         } else {
-            genericBehaviours.harvest(creep);
+            genericActions.harvest(creep);
         }
     },
     memory_generator: function (role, spawn) {

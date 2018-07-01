@@ -12,8 +12,8 @@ module.exports = function (grunt) {
     const private_directory = grunt.option('private_directory') || config.private_directory;
 
 
-    const currentdate = new Date();
-    grunt.log.subhead('Task Start: ' + currentdate.toLocaleString());
+    const current_date = new Date();
+    grunt.log.subhead('Task Start: ' + current_date.toLocaleString());
     grunt.log.writeln('Branch: ' + branch);
 
     // Load needed tasks
@@ -23,6 +23,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-file-append');
     grunt.loadNpmTasks("grunt-jsbeautifier");
     grunt.loadNpmTasks("grunt-rsync");
+    grunt.loadNpmTasks('grunt-string-replace');
+
 
     grunt.initConfig({
 
@@ -61,8 +63,29 @@ module.exports = function (grunt) {
             }
         },
 
+        // task to find and replace require statements in source code after file structure flattening
+        'string-replace': {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: 'dist/',
+                    src: '*.js',
+                    dest: 'dist/'
+                }],
+                options: {
+                    replacements: [{
+                        pattern: /require\('[A-Za-z0-9_\/]*'\)/g,
+                        replacement: function (match) {
+                            match = match.replace("src/", "");
+                            return match.replace(/\//g, "_");
+                        }
+                    }]
+                }
+            }
+        },
 
-        // Copy files to the folder the client uses to sink to the private server.
+
+        // Copy files to the folder the client uses to sync to the private server.
         // Use rsync so the client only uploads the changed files.
         rsync: {
             options: {
@@ -84,7 +107,7 @@ module.exports = function (grunt) {
             versioning: {
                 files: [
                     {
-                        append: "\nglobal.SCRIPT_VERSION = " + currentdate.getTime() + "\n",
+                        append: "\nglobal.SCRIPT_VERSION = " + current_date.getTime() + "\n",
                         input: 'dist/version.js',
                     }
                 ]
@@ -118,8 +141,8 @@ module.exports = function (grunt) {
     });
 
     // Combine the above into a default task
-    grunt.registerTask('default', ['clean', 'copy:screeps', 'file_append:versioning', 'screeps']);
-    grunt.registerTask('private', ['clean', 'copy:screeps', 'file_append:versioning', 'rsync:private']);
+    grunt.registerTask('default', ['clean', 'copy:screeps', 'string-replace', 'file_append:versioning', 'screeps']);
+    grunt.registerTask('private', ['clean', 'copy:screeps', 'string-replace', 'file_append:versioning', 'rsync:private']);
     grunt.registerTask('test', ['jsbeautifier:verify']);
     grunt.registerTask('pretty', ['jsbeautifier:modify']);
 };

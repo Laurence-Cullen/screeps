@@ -1,12 +1,13 @@
-spawnManager = require('spawn_manager');
-workDispatcher = require('work_dispatcher');
-memoryCleaner = require('memory_cleaner');
-combatManager = require('combat_manager');
+spawnManager = require('src/spawning/spawn_manager');
+workDispatcher = require('src/work_dispatcher');
+memoryCleaner = require('src/utils/memory_cleaner');
+combatManager = require('src/combat_manager');
 
 
 module.exports.loop = function () {
     console.log('TICK');
 
+    // perform combat operations and issue instructions to soldier creeps
     combatManager.run();
 
     // issue creep run commands

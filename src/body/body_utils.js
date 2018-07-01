@@ -1,4 +1,4 @@
-part_costs = require('part_costs');
+part_costs = require('src/body/part_costs');
 
 module.exports = {
     construct_body: function (part_quantities) {

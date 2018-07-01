@@ -63,7 +63,7 @@ module.exports = function (grunt) {
             }
         },
 
-
+        // task to find and replace require statements in source code after file structure flattening
         'string-replace': {
             dist: {
                 files: [{

@@ -1,4 +1,4 @@
-genericActions = require('src/actions/generic_actions');
+genericActions = require('src/actions/generic_behaviours');
 leastUsedSource = require('src/utils/least_used_source');
 
 

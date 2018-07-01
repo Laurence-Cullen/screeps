@@ -1,4 +1,4 @@
-spawnManager = require('dist/spawning/spawn_manager');
+spawnManager = require('src/spawning/spawn_manager');
 workDispatcher = require('src/work_dispatcher');
 memoryCleaner = require('src/utils/memory_cleaner');
 combatManager = require('src/combat_manager');

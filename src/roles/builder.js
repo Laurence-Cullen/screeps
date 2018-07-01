@@ -34,14 +34,15 @@ module.exports = {
                 }
             } else {
                 const targets = creep.room.find(FIND_STRUCTURES, {
-                    filter: object => object.hits < object.hitsMax
+                    filter: object => (object.hits < object.hitsMax) && (object.hits < 10e6)
                 });
 
-                targets.sort((a, b) => a.hits - b.hits);
+                // targets.sort((a, b) => a.hits - b.hits);
+                const sorted_targets = _.sortBy(targets, target => creep.pos.getRangeTo(target));
 
-                if (targets.length > 0) {
-                    if (creep.repair(targets[0]) === ERR_NOT_IN_RANGE) {
-                        creep.moveTo(targets[0]);
+                if (sorted_targets.length > 0) {
+                    if (creep.repair(sorted_targets[0]) === ERR_NOT_IN_RANGE) {
+                        creep.moveTo(sorted_targets[0]);
                     }
                 }
             }

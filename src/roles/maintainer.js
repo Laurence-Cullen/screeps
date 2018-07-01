@@ -25,7 +25,8 @@ module.exports = {
                         object.structureType === STRUCTURE_ROAD ||
                         object.structureType === STRUCTURE_RAMPART ||
                         object.structureType === STRUCTURE_TOWER) &&
-                        object.hits < object.hitsMax;
+                        (object.hits < object.hitsMax &&
+                            object.hits < 10e6);
                 }
             });
 

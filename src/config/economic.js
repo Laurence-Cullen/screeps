@@ -20,7 +20,7 @@ module.exports = {
             'body_selector': creepBodies.max_labourer
         },
         builder: {
-            'MAX': 3,
+            'MAX': 2,
             'run_func': roleBuilder.run,
             'memory_generator': roleBuilder.memory_generator,
             'body_selector': creepBodies.max_labourer

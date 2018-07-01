@@ -23,6 +23,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-file-append');
     grunt.loadNpmTasks("grunt-jsbeautifier");
     grunt.loadNpmTasks("grunt-rsync");
+    grunt.loadNpmTasks('grunt-string-replace');
+
 
     grunt.initConfig({
 
@@ -58,6 +60,27 @@ module.exports = function (grunt) {
                         return dest + src.replace(/\//g, '_');
                     }
                 }],
+            }
+        },
+
+
+        'string-replace': {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: 'dist/',
+                    src: '*.js',
+                    dest: 'dist/'
+                }],
+                options: {
+                    replacements: [{
+                        pattern: /require\('[A-Za-z0-9_]*\/[A-Za-z0-9_]*\/[A-Za-z0-9_]*\/*/g,
+                        replacement: function (match) {
+                            match = match.replace("src/", "");
+                            return match.replace(/\//g, "_");
+                        }
+                    }]
+                }
             }
         },
 
@@ -118,8 +141,8 @@ module.exports = function (grunt) {
     });
 
     // Combine the above into a default task
-    grunt.registerTask('default', ['clean', 'copy:screeps', 'file_append:versioning', 'screeps']);
-    grunt.registerTask('private', ['clean', 'copy:screeps', 'file_append:versioning', 'rsync:private']);
+    grunt.registerTask('default', ['clean', 'copy:screeps', 'string-replace', 'file_append:versioning', 'screeps']);
+    grunt.registerTask('private', ['clean', 'copy:screeps', 'string-replace', 'file_append:versioning', 'rsync:private']);
     grunt.registerTask('test', ['jsbeautifier:verify']);
     grunt.registerTask('pretty', ['jsbeautifier:modify']);
 };

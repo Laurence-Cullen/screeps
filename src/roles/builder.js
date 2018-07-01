@@ -1,4 +1,4 @@
-genericactions = require('src/actions/generic_actions');
+genericActions = require('src/actions/generic_actions');
 leastUsedSource = require('src/utils/least_used_source');
 
 
@@ -19,10 +19,14 @@ module.exports = {
 
         if (creep.memory.building) {
             // TODO make construction site targeting smarter
-            const targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-            if (targets.length > 0) {
-                if (creep.build(targets[0]) === ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], {
+            let construction_sites = creep.room.find(FIND_CONSTRUCTION_SITES);
+
+            // ordering construction sites by proximity to creep
+            construction_sites = _.sortBy(construction_sites, construct_site => creep.pos.getRangeTo(construct_site));
+
+            if (construction_sites.length > 0) {
+                if (creep.build(construction_sites[0]) === ERR_NOT_IN_RANGE) {
+                    creep.moveTo(construction_sites[0], {
                         visualizePathStyle: {
                             stroke: '#ffffff'
                         }
@@ -42,7 +46,8 @@ module.exports = {
                 }
             }
         } else {
-            genericactions.harvest(creep);
+            genericActions.withdraw_energy_from_storage(creep);
+
         }
     },
     memory_generator: function (role, spawn) {

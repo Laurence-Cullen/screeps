@@ -5,13 +5,13 @@ assasin = require('src/roles/assasin');
 
 module.exports = {
     roles: {
-        // fast_melee: {
-        //     'MAX': 0,
-        //     'squad': 0,
-        //     'run_func': soldier.run,
-        //     'memory_generator': soldier.memory_generator,
-        //     'body_selector': creepBodies.max_fast_melee
-        // },
+        fast_melee: {
+            'MAX': 0,
+            'squad': 0,
+            'run_func': assasin.run,
+            'memory_generator': assasin.memory_generator,
+            'body_selector': creepBodies.max_fast_melee
+        },
         big_melee: {
             'MAX': 0,
             'squad': 1,
@@ -19,7 +19,6 @@ module.exports = {
             'memory_generator': assasin.memory_generator,
             'body_selector': creepBodies.big_melee
         },
-        // TODO fill in tank functionality
         heavy_tank: {
             'MAX': 0,
             'squad': 0,

@@ -1,4 +1,4 @@
-genericactions = require('src/actions/generic_actions');
+genericActions = require('src/actions/generic_actions');
 leastUsedSource = require('src/utils/least_used_source');
 
 
@@ -24,7 +24,7 @@ module.exports = {
                 });
             }
         } else {
-            genericactions.harvest(creep);
+            genericActions.harvest(creep);
         }
     },
     memory_generator: function (role, spawn) {

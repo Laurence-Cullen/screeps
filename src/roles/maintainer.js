@@ -1,4 +1,4 @@
-genericactions = require('src/actions/generic_actions');
+genericActions = require('src/actions/generic_actions');
 leastUsedSource = require('src/utils/least_used_source');
 
 
@@ -29,15 +29,16 @@ module.exports = {
                 }
             });
 
-            targets.sort((a, b) => (a.hits / a.hitsMax) - (b.hits / b.hitsMax));
+            // targets.sort((a, b) => (a.hits / a.hitsMax) - (b.hits / b.hitsMax));
+            const sorted_targets = _.sortBy(targets, target => creep.pos.getRangeTo(target));
 
-            if (targets.length > 0) {
-                if (creep.repair(targets[0]) === ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0]);
+            if (sorted_targets.length > 0) {
+                if (creep.repair(sorted_targets[0]) === ERR_NOT_IN_RANGE) {
+                    creep.moveTo(sorted_targets[0]);
                 }
             }
         } else {
-            genericactions.harvest(creep);
+            genericActions.harvest(creep);
         }
     },
     memory_generator: function (role, spawn) {

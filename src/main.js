@@ -1,7 +1,7 @@
-spawnManager = require('spawning/spawn_manager');
-workDispatcher = require('work_dispatcher');
-memoryCleaner = require('utils/memory_cleaner');
-combatManager = require('combat_manager');
+spawnManager = require('dist/spawning/spawn_manager');
+workDispatcher = require('src/work_dispatcher');
+memoryCleaner = require('src/utils/memory_cleaner');
+combatManager = require('src/combat_manager');
 
 
 module.exports.loop = function () {

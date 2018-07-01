@@ -17,24 +17,39 @@ module.exports = {
             }
         }
     },
-    withdraw_energy_from_containers: function (creep) {
-        // find the closest container with energy in it and withdraw energy from it
+    withdraw_energy_from_storage: function (creep) {
+        // find the closest container or storage with energy in it and withdraw energy from it
+        console.log('attempting to withdraw from containers or storage');
 
-        const containers = creep.room.find(FIND_STRUCTURES, {
-            filter: {structureType: STRUCTURE_CONTAINER}
+        const storage = creep.room.find(FIND_MY_STRUCTURES, {
+            filter: {
+                structureType: STRUCTURE_STORAGE,
+            }
         });
 
-        const containers_with_energy = _.filter(containers, (container) => container.store[RESOURCE_ENERGY] > 0);
+        const containers = creep.room.find(FIND_MY_STRUCTURES, {
+            filter: {
+                structureType: STRUCTURE_CONTAINER,
+            }
+        });
+
+        const structures = containers.concat(storage);
+
+        console.log('found', structures.length, 'storage structures');
+
+        const storage_with_energy = _.filter(structures, (structure) => (structure.store[RESOURCE_ENERGY] > 0));
+
+        console.log(storage_with_energy.length, 'storage structures found with energy');
 
         // sort containers by shortest path to creep
-        const sorted_containers= _.sortBy(containers_with_energy, container => creep.pos.getRangeTo(container));
+        const sorted_storage = _.sortBy(storage_with_energy, storage => creep.pos.getRangeTo(storage));
 
-        if (sorted_containers.length === 0) {
+        if (sorted_storage.length === 0) {
             return ERR_NOT_ENOUGH_ENERGY;
         }
 
-        if (creep.withdraw(sorted_containers[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(sorted_containers[0], {
+        if (creep.withdraw(sorted_storage[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(sorted_storage[0], {
                 visualizePathStyle: {
                     stroke: '#000eff'
                 }

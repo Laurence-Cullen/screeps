@@ -1,4 +1,4 @@
-genericActions = require('src/actions/generic_behaviours');
+genericActions = require('src/actions/economic');
 leastUsedSource = require('src/utils/least_used_source');
 
 

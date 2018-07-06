@@ -20,6 +20,7 @@ module.exports = {
                     spawner.spawn_creep('harvester', spawn, economicConfig);
 
                 } else if (number_of_upgraders < economicConfig.roles['upgrader'].MAX) {
+                    console.log('hardcoded upgrader spawn');
                     spawner.spawn_creep('upgrader', spawn, economicConfig);
 
                 } else {

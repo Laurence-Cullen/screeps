@@ -1,4 +1,4 @@
-genericActions = require('src/actions/generic_behaviours');
+genericActions = require('src/actions/economic');
 leastUsedSource = require('src/utils/least_used_source');
 
 
@@ -48,13 +48,11 @@ module.exports = {
             }
         } else {
             genericActions.withdraw_energy_from_storage(creep);
-
         }
     },
     memory_generator: function (role, spawn) {
         return {
             role: role,
-            target_source: leastUsedSource.find(spawn.room),
             building: false
         }
     }

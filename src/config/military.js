@@ -34,11 +34,9 @@ module.exports = {
         //     'body_selector': creepBodies.max_fast_ranged
         // }
     },
-    // rally_position: new RoomPosition(4, 44, 'W8S42'),
-    // rally_position: new RoomPosition(42, 40, 'W9S42'),
     // object mapping military squad numbers to rally position
     rally_positions: {
-        0: new RoomPosition(22, 2, 'W6S43'),
+        0: new RoomPosition(24, 19, 'W7S42'),
         1: new RoomPosition(24, 19, 'W7S42')
     },
     rally: true,

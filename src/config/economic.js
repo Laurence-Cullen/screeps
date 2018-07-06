@@ -8,7 +8,7 @@ creepBodies = require('src/body/creep_bodies');
 module.exports = {
     roles: {
         harvester: {
-            'MAX': 3,
+            'MAX': 2,
             'run_func': roleHarvester.run,
             'memory_generator': roleHarvester.memory_generator,
             'body_selector': creepBodies.max_labourer

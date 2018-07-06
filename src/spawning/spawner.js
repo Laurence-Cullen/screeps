@@ -11,9 +11,9 @@ module.exports = {
         console.log(creeps_in_role.length, 'creeps in', role, 'role');
 
         if (creeps_in_role.length < sector_config.roles[role].MAX) {
-            let newName = role + Game.time;
+            const name = role + Game.time;
             console.log(
-                'Spawning creep in role:', role, 'with name: ', newName
+                'Spawning creep in role:', role, 'with name: ', name
             );
 
             // finding the source with the minimum number of assigned creeps
@@ -26,7 +26,7 @@ module.exports = {
             // spawning creep
             let spawn_response = spawn.spawnCreep(
                 body_selector(spawn.room.energyAvailable),
-                newName,
+                name,
                 {memory: memory_generator(role, spawn)}
             );
             console.log('spawn response:', spawn_response);
